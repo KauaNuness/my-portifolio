@@ -1,18 +1,24 @@
 import React from "react";
-import { styled, Grid, Container, Typography, Button } from "@mui/material";
+import { styled, Grid, Container, Typography, Button, Box } from "@mui/material";
 import Avatar from "../../../../assets/images/photo.jpg";
 import DownloadIcon from '@mui/icons-material/Download';
 import EmailIcon from '@mui/icons-material/Email';
+import theme from "../../../../theme";
+import StyledButton from "../../../../components/StyledButton/StyledButton";
+import { AnimatedBackground } from "../../../../components/AnimatedBackground/AnimatedBackground";
 
 const Hero = () => {
   const StyledHero = styled("div")(() => ({
-    backgroundColor: "black",
-    height: "100vh"
+    backgroundColor: theme.palette.primary.main,
+    height: "100vh",
+    display: "flex",
+    alignItems: "center"
   }));
 
   const StyledImg = styled("img")(() => ({
-    width: "100%",
-    borderRadius: "50%"
+    width: "80%",
+    borderRadius: "50%",
+    border: `1px solid ${theme.palette.primary.contrastText}`
   }));
 
   return (
@@ -21,25 +27,35 @@ const Hero = () => {
       <Container maxWidth="lg">
 
         <Grid container spacing={2}>
-          <Grid item xs={12} md={4}>
-            <StyledImg src={Avatar} />
+          <Grid item xs={12} md={5}>
+            <Box position="relative">
+              <Box position="absolute" width="100%" top="-100" right="0">
+                <AnimatedBackground />
+              </Box>
+              <Box position="absolute" textAlign="center">
+                <StyledImg src={Avatar} />
+              </Box>
+
+            </Box>
           </Grid>
-          <Grid item xs={12} md={8}>
-            <Typography color="primary" variant="h1" textAlign="center">Kauã Nunes</Typography>
-            <Typography color="primary" variant="h2" textAlign="center">I am a software developer</Typography>
-            <Grid container display="flex" justifyContent="center">
+          <Grid item xs={12} md={7}>
+            <Typography color="primary.contrastText" variant="h1" textAlign="center">Kauã Nunes</Typography>
+            <Typography color="primary.contrastText" variant="h2" textAlign="center">I'm a software developer</Typography>
+            <Grid container display="flex" justifyContent="center" spacing={3}>
 
               <Grid item xs={12} md={4} display="flex" justifyContent="center">
-                <Button>
+
+                <StyledButton>
                   <DownloadIcon />
-                  Download CV
-                </Button>
+                  <Typography>Download CV</Typography>
+                </StyledButton>
               </Grid>
 
               <Grid item xs={12} md={4} display="flex" justifyContent="center">
-                <Button>
+                <StyledButton>
                   <EmailIcon />
-                  Contact me</Button>
+                  <Typography>Contact me</Typography>
+                </StyledButton>
               </Grid>
 
             </Grid>
@@ -51,8 +67,6 @@ const Hero = () => {
         </Grid>
 
       </Container>
-
-
 
     </StyledHero>
   );
